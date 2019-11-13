@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes} from '@angular/router'
+import {  HttpClientModule } from '@angular/common/http'
 
 import { RentalModule } from './rental/rental.module';
 
@@ -23,6 +24,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
+    HttpClientModule,
     RentalModule
   ],
   providers: [],

@@ -21,16 +21,16 @@ export class RentalDetailComponent implements OnInit {
       (params)=>{
         // this.currentId = params['rentalId']
         this.getRental(params['rentalId'])
-
- //       console.log(params)
       }
     )
   }
 
   getRental(rentalId: string) {
+    console.log(rentalId);
     this.rentalService.getRentalById(rentalId).subscribe(
+      
       (data: Rental)=>{
-        this.rental = data
+        this.rental = data;
       });
   }
 
