@@ -1,0 +1,24 @@
+<agm-map
+(mapReady) ="mapReadyHandler()"
+ [latitude]="lat"
+ [longitude]="lng"
+ [zoom]="13">
+  <agm-circle
+    [latitude]="lat"
+    [longitude]="lng"
+    [radius] = "800"
+    [fillColor]="'#ff0021'"
+    [fillOpacity]="0.3"
+    *ngIf="!isPositionError && lat && lng">
+  </agm-circle>
+  <agm-info-window
+    [latitude]="0"
+    [longitude]="0"
+    [isOpen]=true
+    [maxWidth]="300"
+    *ngIf="isPositionError">
+    Oops an error occurred while displaying this location. Do not be alarmed, our team is on top of this. Sorry for the inconveniences caused
+  </agm-info-window>
+</agm-map>
+
+<h1>{{location}}</h1>
