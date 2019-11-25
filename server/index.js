@@ -5,16 +5,19 @@ const cors = require('cors')
 const config = require('./config/dev')
 const Rental = require('./models/rental')
 const FakeDb = require('./fake-DB')
-const rentalRouter = require('./routes/rental')
+const rentalRouter = require('./routes/rental'),
+        userRouter = require('./routes/users')
 
-const app = express()
-
+//db connection and seeding
 mongoose.set('useUnifiedTopology', true);
 mongoose.connect(config.DB_URI, {useNewUrlParser: true}).then(()=>{
     const fakeDB = new FakeDb();
 
-    fakeDB.seedDb();
+    // fakeDB.seedDb();
 })
+
+
+const app = express()
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -28,6 +31,7 @@ app.use(cors(corsOptions))
 
 
 app.use('/api/v1/rentals', rentalRouter)
+app.use('/api/v1/users', userRouter)
 
 
 
