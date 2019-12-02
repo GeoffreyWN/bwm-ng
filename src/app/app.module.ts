@@ -4,6 +4,8 @@ import { RouterModule, Routes} from '@angular/router'
 import {  HttpClientModule } from '@angular/common/http'
 
 import { RentalModule } from './rental/rental.module';
+import { AuthModule } from './auth/auth.module';
+
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './common/header/header.component';
@@ -18,14 +20,14 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    
+    HeaderComponent,    
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
-    RentalModule
+    RentalModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

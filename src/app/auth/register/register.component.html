@@ -1,0 +1,62 @@
+
+<section id="register">
+  <div class="bwm-form">
+    <div class="row">
+      <div class="col-md-5">
+        <h1 class="page-title">Register</h1>
+        <form #registerForm = "ngForm">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" required
+                   #username = "ngModel"
+                   class="form-control"
+                   id="username"
+                   [(ngModel)]="formData.username" name="username">
+
+                   <div *ngIf="username.invalid && (username.dirty  || username.touched)" class="alert alert-danger">
+                    <div *ngIf="username.errors.required">
+                      Username is required
+                    </div>
+                   </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" required
+                   class="form-control"
+                   id="email"
+                   [(ngModel)]="formData.email" name="email">
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" required
+                   class="form-control"
+                   id="password"
+                   [(ngModel)]="formData.password" name="password">
+          </div>
+
+          <div class="form-group">
+            <label for="passwordConfirmation">Confirm Password</label>
+            <input type="password" required
+                   class="form-control"
+                   id="passwordConfirmation"
+                   [(ngModel)]="formData.passwordConfirmation" name="passwordConfirmation">
+          </div>
+          <button [disabled]="!registerForm.form.valid" type="submit" (click)="register()" class="btn btn-bwm">Submit</button>
+        </form>
+        <div *ngIf="errors.length > 0" class="alert alert-danger">
+          <p *ngFor="let error of errors; let i=index">
+            {{i+1}} {{error.detail}}
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 ml-auto">
+        <div class="image-container">
+          <h2 class="catchphrase">As our member you have access to most awesome places in the world.</h2>
+          <img src="../../../assets/images/register-image.jpg" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
