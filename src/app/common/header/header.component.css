@@ -16,6 +16,9 @@
 .navbar .nav-item {
   font-size: 14px;
 }
+.clickable{
+  cursor: pointer;
+}
 .navbar .btn-bwm-search {
   border-color: #f44336;
   color: #f44336;
