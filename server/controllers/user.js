@@ -86,7 +86,7 @@ exports.authMiddleware = function (req, res, next) {
 
             if (user) {
                 res.locals.user = user;
-                next()
+                next();
             } else {
                 return notAuthorized(res)
             }
