@@ -41,7 +41,7 @@ exports.createBooking = function(req, res) {
 
             
         } else {
-            return res.status(422).send({errors: {title: 'Invalid booking'}, details: 'Proposed dates are already taken'})
+            return res.status(422).send({errors: {title: 'Invalid booking', details: 'Proposed dates are already taken'}})
         }
 
     })
