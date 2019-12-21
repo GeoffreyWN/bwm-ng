@@ -7,6 +7,7 @@ const Rental = require('./models/rental')
 const FakeDb = require('./fake-DB')
 const rentalRouter = require('./routes/rental'),
         userRouter = require('./routes/users')
+        bookingRouter = require('./routes/bookings')
 
 //db connection and seeding
 mongoose.set('useUnifiedTopology', true);
@@ -32,6 +33,7 @@ app.use(cors(corsOptions))
 
 app.use('/api/v1/rentals', rentalRouter)
 app.use('/api/v1/users', userRouter)
+app.use('/api/v1/bookings', bookingRouter)
 
 
 
