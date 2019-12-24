@@ -17,7 +17,7 @@ exports.createBooking = function(req, res) {
         }
 
         if (foundRental.user.id === user.id) {
-            return res.status(422).send({errors: {title: 'Invalid user', details: 'Cannot make booking on your own rental'}})
+            return res.status(422).send({errors: [{title: 'Invalid user', details: 'Cannot make booking on your own rental'}]})
         }
 
         if (isValidBooking(booking, foundRental)) {
@@ -41,7 +41,7 @@ exports.createBooking = function(req, res) {
 
             
         } else {
-            return res.status(422).send({errors: {title: 'Invalid booking', details: 'Proposed dates are already taken'}})
+            return res.status(422).send({errors: [{title: 'Invalid booking', details: 'Proposed dates are already taken'}]})
         }
 
     })

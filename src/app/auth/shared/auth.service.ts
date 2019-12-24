@@ -19,7 +19,7 @@ export class AuthService {
     private decodedToken;
 
     constructor(public http: HttpClient) {
-        this.decodedToken = JSON.parse(localStorage.getItem('bwm-meta')) || new DecodedToken();
+        this.decodedToken = JSON.parse(localStorage.getItem('bwm-meta')) || new DecodedToken(); // ensures that exp is not undefined at the beginning
     }
 
     private saveToken(token: string): string {

@@ -39,7 +39,7 @@ private isLoginOrRegister(): boolean {
 }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    this.url = state.url;
+    this.url = state.url; // state url is the url that we are navigating to
     if (this.authService.isAuthenticated()) {
         return this.handleAuthstate();
     }
