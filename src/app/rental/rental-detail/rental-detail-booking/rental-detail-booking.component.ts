@@ -10,6 +10,7 @@ import { DaterangePickerComponent } from 'ng2-daterangepicker';
 
 import { Rental } from '../../shared/rental.model';
 import { BookingService } from '../../../booking/shared/booking.service';
+import { AuthService } from '../../../auth/shared/auth.service';
 // import { Rental } from '../../shared/rental.model';
 
 @Component({
@@ -41,7 +42,7 @@ export class RentalDetailBookingComponent implements OnInit {
       autoUpdateInput: false, 
       isInvalidDate: this.checkForInvalidDates.bind(this) // the bind tranfers context to the calendar logic
   };
-  constructor(private helperService: HelperService, private modalService: NgbModal, private bookingService: BookingService, public toastr: ToastsManager, vcr: ViewContainerRef) {
+  constructor(private helperService: HelperService, private authService: AuthService, private modalService: NgbModal, private bookingService: BookingService, public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
  }
 

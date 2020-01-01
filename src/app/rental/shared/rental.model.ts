@@ -1,6 +1,9 @@
 import { Booking } from "../../booking/shared/booking.model";
 
 export class Rental {
+
+    static readonly CATEGORIES = ['home', 'condo', 'apartment']
+    
     _id: string;
     title: string;
     city: string;

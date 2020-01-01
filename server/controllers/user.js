@@ -16,7 +16,7 @@ exports.auth = function (req, res) {
         }
 
         if(!user) {
-            return res.status(422).send({errors: [{title:"Invalid user", detail:"User does exists"}]});
+            return res.status(422).send({errors: [{title:"Invalid user", detail:"User does not exists"}]});
         }
 
         if (user.hasSamePassword(password)) {

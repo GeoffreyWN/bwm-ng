@@ -13,6 +13,21 @@
     text-transform: uppercase;
     margin: 0;
 }
+.rental-owner {
+    float: right;
+}
+.rental-owner img{
+    height: 50px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+
+.rental-owner span{
+    display: block;
+    font-size: 13px;
+    font-weight: 300;
+}
 #rentalDetails .details-section .rental-title {
     margin-bottom: 5px;
     font-size: 32px;

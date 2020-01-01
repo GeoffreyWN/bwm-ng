@@ -4,6 +4,7 @@ a:hover, :focus{
 
 .bwm-card {
     border: none;
+    margin-bottom:10px;
 }
 .bwm-card .card-block {
     padding-top: 8px;
