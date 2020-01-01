@@ -18,7 +18,7 @@ router.get('/:id', (req, res)=>{
           .populate('bookings', ' startAt endAt -_id')
           .exec((err, foundRental)=>{
               if (err) {
-                  return res.status(422).send({errors: {title: 'Rental Error', details: 'Rental not found'}})
+                  return res.status(422).send({errors: [{title: 'Rental Error', details: 'Rental not found'}]})
               }
 
               return res.json(foundRental)
@@ -34,7 +34,7 @@ router.post('', UserCtrl.authMiddleware, (req, res)=>{
 
     Rental.create(rental, (err, newRental)=>{
         if (err) {
-            return res.status(200).json({errors: normalizeErrors(err.errors)})
+            return res.status(422).json({errors: normalizeErrors(err.errors)})
         }
         User.update({_id: user.id}, {$push: {rentals: newRental}}, ()=>{});
 
@@ -54,7 +54,7 @@ router.get('/', (req, res)=>{
             }
 
             if( city && foundRentals.length === 0) {
-                return res.status(422).send({errors: {title: 'Sorry, rentals do not exist', details: `Rentals within ${this.city} city were not found!`}})
+                return res.status(422).send({errors: [{title: 'Sorry, rentals do not exist', detail: `Rentals within ${city} city were not found!`}]})
             }
 
           return res.status(200).json(foundRentals)

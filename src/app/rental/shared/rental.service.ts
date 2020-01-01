@@ -101,12 +101,19 @@ export class RentalService {
   //   return rentalObservable
   // }
   public getRentalById(rentalId: string): Observable<any> {
-    console.log(rentalId)
     return this.http.get('http://localhost:3001/api/v1/rentals/' + rentalId)
   }
 
   public getRentals(): Observable<any>  {
     return this.http.get(`${this.url}`)
+  }
+
+  public getRentalsByCity(city: string): Observable<any>  {
+    return this.http.get(`${this.url}?city=${city}`)
+  }
+
+  public createRental(rental: Rental): Observable<any> {
+    return this.http.post(`${this.url}`, rental)
   }
 
 }
