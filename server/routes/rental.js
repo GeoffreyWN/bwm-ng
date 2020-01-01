@@ -10,6 +10,19 @@ router.get('/secret', UserCtrl.authMiddleware, (req, res)=>{
     res.json({"secret": true});
 })
 
+router.get('/manage', UserCtrl.authMiddleware, (req, res)=>{
+    const user = res.locals.user;
+
+    Rental.where({user})
+    .populate('bookings')
+    .exec((err, foundRentals)=>{
+        if (err) {
+            return res.status(422).send({errors: normalizeErrors(err.errors)})
+        }
+        return res.json(foundRentals)
+    })
+});
+
 router.get('/:id', (req, res)=>{
     const rentalId = req.params.id;
 
@@ -24,6 +37,40 @@ router.get('/:id', (req, res)=>{
               return res.json(foundRental)
           })
 })
+
+
+
+router.delete('/:id', UserCtrl.authMiddleware, (req, res)=>{
+    const user = res.locals.user
+
+    Rental.findById(req.params.id)
+    .populate('user', '_id')
+    .populate({
+        path: 'bookings',
+        select: 'startAt',
+        match: { startAt: {$gt: new Date()}}
+    }).exec((err, foundRental)=>{
+        if (err) {
+            return res.status(422).send({errors: normalizeErrors(err.errors)})
+        }
+
+        if (user.id !== foundRental.user.id) {
+            return res.status(422).send({errors: [{title: 'Invalid user', detail: "You do not own this rental"}]})
+        }
+
+        if (foundRental.bookings.length > 0) {
+            return res.status(422).send({errors: [{title: 'Active bookings', detail: "This rental has active bookings"}]})
+        }
+
+        foundRental.remove((err)=>{
+            if (err) {
+                return res.status(422).send({errors: normalizeErrors(err.errors)})
+            }
+
+            return res.json({"status": "deleted"})
+        });
+    })
+});
 
 router.post('', UserCtrl.authMiddleware, (req, res)=>{
     const{title, city, street, category, shared, image, bedrooms, description, dailyRate} = req.body;
