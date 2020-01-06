@@ -7,12 +7,16 @@ import { Booking } from './booking.model';
 export class BookingService {
 
   //url = 'localhost:3001/api/v1/rentals' use a proxy to avoid cors errors
-  url = 'http://localhost:3001/api/v1/rentals'
+  url = 'http://localhost:3001/api/v1/bookings'
 
   constructor(private http: HttpClient) { }
 
   public createBooking(booking: Booking): Observable<any> {
     return this.http.post('http://localhost:3001/api/v1/bookings', booking)
+  }
+
+  public getUserBookings(): Observable<any> {
+    return this.http.get(`${this.url}/manage`)
   }
 
 
