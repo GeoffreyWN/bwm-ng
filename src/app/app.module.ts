@@ -10,11 +10,11 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
 import { RentalModule } from './rental/rental.module';
 import { AuthModule } from './auth/auth.module';
+import { ManageModule } from './manage/manage.module';
 
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './common/header/header.component';
-import { RentalComponent } from './rental/rental.component';
 
 
 const routes: Routes = [
@@ -25,7 +25,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,    
+    HeaderComponent,   
   ],
   imports: [
     BrowserModule,
@@ -34,6 +34,7 @@ const routes: Routes = [
     HttpClientModule,
     RentalModule,
     AuthModule,
+    ManageModule,
     NgbModule.forRoot(),
     ToastModule.forRoot()
 

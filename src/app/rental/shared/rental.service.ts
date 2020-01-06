@@ -104,7 +104,7 @@ export class RentalService {
     return this.http.get('http://localhost:3001/api/v1/rentals/' + rentalId)
   }
 
-  public getRentals(): Observable<any>  {
+  public getRentals(): Observable<any>  { 
     return this.http.get(`${this.url}`)
   }
 
@@ -114,6 +114,14 @@ export class RentalService {
 
   public createRental(rental: Rental): Observable<any> {
     return this.http.post(`${this.url}`, rental)
+  }
+
+  public getUserRentals(): Observable<any> {
+    return this.http.get(`${this.url}/manage`)
+  }
+
+  public deleteRental(rentalId: string): Observable<any> {
+    return this.http.delete('http://localhost:3001/api/v1/rentals/' + rentalId)
   }
 
 }
